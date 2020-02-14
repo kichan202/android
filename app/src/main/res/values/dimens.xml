@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="horizontal_right">12dp</dimen>
+    <dimen name="button_margin_top">2dp</dimen>
+    <dimen name="button_margin_bottom">2dp</dimen>
+    <dimen name="text_view_padding">16dp</dimen>
+</resources>

@@ -8,4 +8,38 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Button">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/button_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/button_margin_bottom</item>
+
+    </style>
+
+    <style name="Button.True">
+        <item name="android:text">@string/true_button</item>
+        <item name="android:layout_marginRight">@dimen/horizontal_right</item>
+    </style>
+
+    <style name="Button.False">
+        <item name="android:text">@string/false_button</item>
+    </style>
+
+    <style name="Button.Previous">
+        <item name="android:src">@drawable/arrow_left</item>
+        <item name="android:layout_marginRight">@dimen/horizontal_right</item>
+    </style>
+
+    <style name="Button.Next">
+        <item name="android:src">@drawable/arrow_right</item>
+        <item name="android:contentDescription">@string/next_button</item>
+    </style>
+
+    <style name="TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">@dimen/text_view_padding</item>
+    </style>
+
 </resources>
