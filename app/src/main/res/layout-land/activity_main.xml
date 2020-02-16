@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/question_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="2dp"
+        >
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal">
+        <Button
+            style="@style/Button.True"
+            android:id="@+id/true_button"></Button>
+
+        <Button
+            style="@style/Button.False"
+            android:id="@+id/false_button"
+        ></Button>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:padding="4dp"
+        >
+
+
+        <ImageButton
+            style="@style/Button.Previous"
+            android:id="@+id/previous_button">
+        </ImageButton>
+
+        <ImageButton
+            style="@style/Button.Next"
+            android:id="@+id/next_button">
+
+        </ImageButton>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

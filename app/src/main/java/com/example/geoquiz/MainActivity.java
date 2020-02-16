@@ -3,6 +3,7 @@ package com.example.geoquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.ArraySet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,9 +11,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "QuizActivity";
+    private static final String KEY_INDEX = "index";
+    private static final String ARRAY_INDEX = "arrayindex";
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -29,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question_americas,true),
             new Question(R.string.question_asia,true)
     };
+    private ArrayList<Integer> mAnsweredArray = new ArrayList<>();
     private int mCurrentIndex = 0;
+    private int mNumberOfCorrectAnswers = 0;
+    private int mNumberOfWrongAnswers = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +46,21 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_main);
 
+        if(savedInstanceState != null){
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX,0);
+            mAnsweredArray = savedInstanceState.getIntegerArrayList(ARRAY_INDEX);
+        }
+
+
 
         mTrueButton = findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTrueButton.setClickable(false);
+                mFalseButton.setClickable(false);
                 checkAnswer(true);
+                mAnsweredArray.add(mCurrentIndex);
             }
         });
 
@@ -50,7 +68,11 @@ public class MainActivity extends AppCompatActivity {
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTrueButton.setClickable(false);
+                mFalseButton.setClickable(false);
                 checkAnswer(false);
+                mAnsweredArray.add(mCurrentIndex);
+
             }
         });
 
@@ -113,22 +135,56 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume() called");
     }
 
-    private void updateQuestion() {
-        mQuestionTextView.setText(mQuestionBank[mCurrentIndex].getTextResId());
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG,"onSaveInstanceState()");
+        outState.putInt(KEY_INDEX,mCurrentIndex);
+        outState.putIntegerArrayList(ARRAY_INDEX, mAnsweredArray);
     }
 
     private void checkAnswer(boolean userPressedTrue){
-        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+        int msgResId;
+        boolean answer = mQuestionBank[mCurrentIndex].isAnswerTrue();
 
-        int messageResId = 0;
+        if(answer == userPressedTrue){
+            mNumberOfCorrectAnswers += 1;
+            msgResId = R.string.correct_toast;
 
-        if(userPressedTrue == answerIsTrue) {
-            messageResId = R.string.correct_toast;
-        } else {
-            messageResId = R.string.incorrect_toast;
+        }else{
+            mNumberOfWrongAnswers += 1;
+            msgResId = R.string.incorrect_toast;
         }
-        Toast.makeText(this,messageResId,Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this,msgResId,Toast.LENGTH_SHORT).show();
+
+        if(mNumberOfCorrectAnswers + mNumberOfWrongAnswers == mQuestionBank.length){
+            mTrueButton.setClickable(false);
+            mFalseButton.setClickable(false);
+
+            double percentage = ((double)mNumberOfCorrectAnswers / (double)mQuestionBank.length) * 100;
+
+            Toast.makeText(MainActivity.this,getString(R.string.number_of_correct_answers) + mNumberOfCorrectAnswers + "\n" +
+                    getString(R.string.percentage_of_answes, percentage),Toast.LENGTH_LONG).show();
+
+        }
+
     }
+
+    private void updateQuestion() {
+        int question = mQuestionBank[mCurrentIndex].getTextResId();
+        mQuestionTextView.setText(question);
+        if(mAnsweredArray.contains(mCurrentIndex)){
+            mTrueButton.setClickable(false);
+            mFalseButton.setClickable(false);
+        }else{
+            mFalseButton.setClickable(true);
+            mTrueButton.setClickable(true);
+        }
+    }
+
+
 }
