@@ -18,12 +18,12 @@
         android:orientation="horizontal">
         <Button
             style="@style/Button.True"
-            android:id="@+id/true_button"></Button>
+            android:id="@+id/true_button"/>
 
         <Button
             style="@style/Button.False"
             android:id="@+id/false_button"
-        ></Button>
+        />
 
     </LinearLayout>
 
@@ -36,12 +36,14 @@
 
         <ImageButton
             style="@style/Button.Previous"
-            android:id="@+id/previous_button">
+            android:id="@+id/previous_button"
+            android:contentDescription="@string/previous_button">
         </ImageButton>
 
         <ImageButton
             style="@style/Button.Next"
-            android:id="@+id/next_button">
+            android:id="@+id/next_button"
+            android:contentDescription="@string/next_button">
 
         </ImageButton>
 

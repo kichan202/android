@@ -4,7 +4,7 @@
     <string name="question_oceans">The Pacific Ocean is larger than the Atlantic Ocean.</string>
     <string name="question_mideast">The Suez Canal connects the Red Sea and the Indian Ocean.</string>
     <string name="question_africa">The source of the Nile River is in Egypt.</string>
-    <string name="question_americas">The Amazon Rizer is the longest river in the Americas.</string>
+    <string name="question_americas">The Amazon River is the longest river in the Americas.</string>
     <string name="question_asia">Lake Baikal is the world\'s oldest and deepest freshwater lake</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
@@ -13,5 +13,5 @@
     <string name="next_button">Next</string>
     <string name="previous_button">Previous</string>
     <string name="number_of_correct_answers">Number of correct Answers: </string>
-    <string name="percentage_of_answes">Your Percentage: %.2f%%</string>
+    <string name="percentage_of_answers">Your Percentage: %.2f%%</string>
 </resources>

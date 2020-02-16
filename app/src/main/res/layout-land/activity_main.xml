@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<merge>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,33 +18,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal">
+
         <Button
             style="@style/Button.True"
-            android:id="@+id/true_button"></Button>
+            android:id="@+id/true_button" />
 
         <Button
             style="@style/Button.False"
-            android:id="@+id/false_button"
-        ></Button>
+            android:id="@+id/false_button" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end"
         android:padding="4dp"
         >
 
 
         <ImageButton
             style="@style/Button.Previous"
-            android:id="@+id/previous_button">
+            android:id="@+id/previous_button"
+            android:contentDescription="@string/previous_button">
         </ImageButton>
 
         <ImageButton
             style="@style/Button.Next"
-            android:id="@+id/next_button">
+            android:id="@+id/next_button"
+            android:contentDescription="@string/next_button">
 
         </ImageButton>
 
@@ -52,3 +55,4 @@
 
 
 </FrameLayout>
+</merge>

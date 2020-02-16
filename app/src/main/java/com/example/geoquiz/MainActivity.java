@@ -3,7 +3,6 @@ package com.example.geoquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.ArraySet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,12 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
-    private ImageButton mNextButton;
-    private ImageButton mPreviousButton;
     private TextView mQuestionTextView;
 
 
-    private Question[] mQuestionBank = new Question[]  {
+    private final Question[] mQuestionBank = new Question[]  {
             new Question(R.string.question_australia, true),
             new Question(R.string.question_oceans,true),
             new Question(R.string.question_mideast,false),
@@ -80,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         mQuestionTextView = findViewById(R.id.question_text_view);
 
         //next button
-        mNextButton = findViewById(R.id.next_button);
-        mNextButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton nextButton = findViewById(R.id.next_button);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
@@ -90,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //previous button
-        mPreviousButton = findViewById(R.id.previous_button);
-        mPreviousButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton previousButton = findViewById(R.id.previous_button);
+        previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCurrentIndex = ((mCurrentIndex - 1) + mQuestionBank.length) % mQuestionBank.length;
@@ -168,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             double percentage = ((double)mNumberOfCorrectAnswers / (double)mQuestionBank.length) * 100;
 
             Toast.makeText(MainActivity.this,getString(R.string.number_of_correct_answers) + mNumberOfCorrectAnswers + "\n" +
-                    getString(R.string.percentage_of_answes, percentage),Toast.LENGTH_LONG).show();
+                    getString(R.string.percentage_of_answers, percentage),Toast.LENGTH_LONG).show();
 
         }
 
