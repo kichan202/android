@@ -3,6 +3,7 @@ package com.example.geoquiz;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class CheatActivity extends AppCompatActivity {
 
                 setAnswerShownResult(true);
 
+
             }
         });
 
@@ -51,6 +53,8 @@ public class CheatActivity extends AppCompatActivity {
        Intent data = new Intent();
        data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown);
        setResult(RESULT_OK, data);
+       //can decide to finish the activity manually
+        //finish();
     }
 
     //use this intent maker to start this activity

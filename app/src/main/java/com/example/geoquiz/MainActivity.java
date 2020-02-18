@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
                 Intent intent = CheatActivity.newIntent(MainActivity.this,answerIsTrue);
-               startActivity(intent);
+               startActivityForResult(intent,REQUEST_CODE_CHEAT);
             }
         });
         updateQuestion();
@@ -127,18 +127,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
+
         if(resultCode != Activity.RESULT_OK) {
             //first check to make sure we got a go result
             return;
         }
-
-
 
         if(requestCode == REQUEST_CODE_CHEAT){
             if(data == null){
                 return;
             }
             if(resultCode == RESULT_OK){
+
                 mIsCheater = CheatActivity.wasAnswerShown(data);
 
             }
@@ -189,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         int msgResId;
 
         if(mIsCheater) {
+
             msgResId = R.string.judgement_toast;
         }else{
 
